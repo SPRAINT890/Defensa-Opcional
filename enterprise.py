@@ -8,7 +8,25 @@ class Enterprise:
         self._store = None
     
     def __str__(self) -> str:
-        return "Name: {}, Budget: {}, Creation: {}, Departments: {}, Customer: {}, Store: {}".format(self.name, self.budget, self.creation, self.departments, self.customers, self.store)
+        return "\nName: {}\nBudget: {}\nCreation: {} \nDepartments: {} \nCustomer: {} \nStore: {}".format(self.name, self.budget, self.creation, self.__str_department__(), self.__str_customers__(), self.__str_store__())
+    
+    def __str_department__(self) -> str:
+        string = ""
+        for department in self.departments:
+            string += str(department) + " "
+        return string
+    
+    def __str_customers__(self) -> str:
+        string = ""
+        for customers in self.customers:
+            string += str(customers) + " "
+        return string
+
+    def __str_store__(self) -> str:
+        string = ""
+        for store in self.store:
+            string += str(store) + " "
+        return string
     
     @property
     def name(self):

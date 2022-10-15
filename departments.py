@@ -32,7 +32,7 @@ class Departments:
         self._roles = role
 
     def __str__(self) -> str:
-        return "sections: {}, members: {}, roles: {}".format(self._section, self._members, self._roles)
+        return "\n  sections: {}\n  members: {}\n  roles: {}\n".format(self._section, self._members, self._roles)
     
 # if __name__ == "__main__":
 #     departments = Departments()

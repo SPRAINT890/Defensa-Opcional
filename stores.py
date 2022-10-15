@@ -20,7 +20,7 @@ class Store:
         self._address = adrs
     
     def __str__(self) -> str:
-        return f"Storeid: {self._store_id}, Address: {self._address}"
+        return f"\n  Storeid: {self._store_id}\n  Address: {self._address}\n"
 
 if __name__ == '__main__':
     s1 = Store()

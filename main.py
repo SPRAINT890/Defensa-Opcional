@@ -10,7 +10,14 @@ def hay_miembros_repetidos(enterprise, str_section):
             lista_miembros = seccion.members
             sin_duplicar = [*set(lista_miembros)]
             seccion.members = sin_duplicar
-    
+
+# def existe_presupuesto_suficiente(enterprise1, float_mem_rrhh, float_mem_tec, float_mem_dir, float_ganancia):
+# def definir_roles(enterprise1, list_members, list_roles):
+# def es_antiguedad_adecuada(enterprise1):
+# def obtener_estadisticas_clientes(enterprise1):
+# def es_sucursal_correcta(enterprise1, list_id_chars):
+# es_misma_empresa (enterprise1, enterprise2):
+
 if __name__ == '__main__':
     
     # declaracion de objetos customers
@@ -55,5 +62,5 @@ if __name__ == '__main__':
     
     # print(e1.departments)
     hay_miembros_repetidos(e1, "I+D")
-    print(e1.departments)
-    # hay_miembros_repetidos(e1, "RRHH")
+    hay_miembros_repetidos(e1, "RRHH")
+    print(e1)
