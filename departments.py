@@ -4,6 +4,9 @@ class Departments:
         self._members = None
         self._roles = None
 
+    def __eq__(self, __o: object) -> bool:
+        return self.section == __o
+
     @property
     def section(self):
         return self._section
@@ -37,3 +40,6 @@ class Departments:
 #     departments.members = "Diego"
 #     departments.roles = "programer"
 #     print(departments)
+    
+#     if departments == "gav":
+#         print("entro")
