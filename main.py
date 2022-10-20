@@ -8,7 +8,7 @@ def hay_miembros_repetidos(enterprise, str_section):
     for seccion in lista_secciones:
         if seccion == str_section:
             lista_miembros = seccion.members
-            sin_duplicar = [*set(lista_miembros)]
+            sin_duplicar = list(set(lista_miembros))
             seccion.members = sin_duplicar
 
 # def existe_presupuesto_suficiente(enterprise1, float_mem_rrhh, float_mem_tec, float_mem_dir, float_ganancia):
@@ -61,6 +61,9 @@ if __name__ == '__main__':
     e1.store = [s1, s2]
     
     # print(e1.departments)
-    hay_miembros_repetidos(e1, "I+D")
-    hay_miembros_repetidos(e1, "RRHH")
-    print(e1)
+    # hay_miembros_repetidos(e1, "I+D")
+    # hay_miembros_repetidos(e1, "RRHH")
+    # print(e1)
+    
+    if d1.__eq__("RRHH"):
+        print("hola")
