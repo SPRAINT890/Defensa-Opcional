@@ -25,7 +25,16 @@ def definir_roles(obj_empresa: object, list_members: list, list_roles: list):
             matrix_x.append(m_members_roles[y][x])
         mt_members_roles.append(matrix_x)
     
-    
+    for members_roles in mt_members_roles:
+        for obj_department_empresa in list_obj_departments_empresa:
+            posicion = 0
+            for members in obj_department_empresa.members:
+                if(members != members_roles[0]):
+                    posicion += 1
+                    continue
+                obj_department_empresa.roles[posicion] = members_roles[1]
+                break
+
 
 def es_antiguedad_adecuada(obj_empresa: object):
     año_actual = 2022
@@ -105,12 +114,12 @@ if __name__ == '__main__':
     d1 = Departments()
     d1.section = "RRHH"
     d1.members = ["Lorena", "Felipe", "Jose", "Felipe"]
-    d1.roles = ["Gerente", "AC", "AC"]
+    d1.roles = ["Gerente", "AC", "AC", "AC"]
     
     d2 = Departments()
     d2.section = "I+D"
     d2.members = ["Juan", "Jorge", "Pedro", "Juan"]
-    d2.roles = ["Gerente", "Investigador", "Limpieza"]
+    d2.roles = ["Gerente", "Investigador", "Limpieza", "gerente"]
     
     # declaracion de objetos Store
     s1 = Store()
@@ -154,5 +163,8 @@ if __name__ == '__main__':
     # 
     # es_antiguedad_adecuada(e1)
     # print(obtener_estadisticas_clientes(e1))
-    print(es_misma_empresa(e1, e2))
-    print(es_misma_empresa(e1, e3))
+    # print(es_misma_empresa(e1, e2))
+    # print(es_misma_empresa(e1, e3))
+    print(e1)
+    definir_roles(e1, ["Lorena", "Felipe", "Jose"], ["gerente", "ac", "manager"])
+    print(e1)
