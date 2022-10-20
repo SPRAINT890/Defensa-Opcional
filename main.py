@@ -66,7 +66,11 @@ def obtener_estadisticas_clientes(obj_empresa: object):
     return mpm_edad, mpm_antiguedad
 
 # def es_sucursal_correcta(enterprise1, list_id_chars):
-# es_misma_empresa (enterprise1, enterprise2):
+
+def es_misma_empresa(obj_empresa1: object, obj_empresa2: object):
+    if (obj_empresa1.customers != obj_empresa2.customers or obj_empresa1.departments != obj_empresa2.departments or obj_empresa1.store != obj_empresa2.store):
+        return "False"
+    return "True"
 
 if __name__ == '__main__':
     
@@ -110,9 +114,29 @@ if __name__ == '__main__':
     e1.customers = [c1, c2]
     e1.store = [s1, s2]
     
+    e2 = Enterprise()
+    e2.name = "fenware"
+    e2.budget = 14000
+    e2.creation = "15/07/2015"
+    e2.departments = [d1, d2]
+    e2.customers = [c1, c2]
+    e2.store = [s1, s2]
+    
+    e3 = Enterprise()
+    e3.name = "flask"
+    e3.budget = 14000
+    e3.creation = "15/07/2015"
+    e3.departments = [d2]
+    e3.customers = [c1]
+    e3.store = [s1, s2]
+    
+    
+    # testeo de funciones
     # print(e1.departments)
     # hay_miembros_repetidos(e1, "I+D")
     # hay_miembros_repetidos(e1, "RRHH")
     # 
     # es_antiguedad_adecuada(e1)
-    print(obtener_estadisticas_clientes(e1))
+    # print(obtener_estadisticas_clientes(e1))
+    print(es_misma_empresa(e1, e2))
+    print(es_misma_empresa(e1, e3))
