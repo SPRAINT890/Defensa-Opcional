@@ -12,7 +12,20 @@ def hay_miembros_repetidos(enterprise: object, str_section: str):
             seccion.members = sin_duplicar
 
 # def existe_presupuesto_suficiente(enterprise1, float_mem_rrhh, float_mem_tec, float_mem_dir, float_ganancia):
-# def definir_roles(enterprise1, list_members, list_roles):
+
+def definir_roles(obj_empresa: object, list_members: list, list_roles: list):
+    list_obj_departments_empresa = obj_empresa.departments
+    
+    # creo una matriz transpuesta de members y roles
+    m_members_roles = [list_members, list_roles]
+    mt_members_roles = []
+    for x in range(len(list_members)):
+        matrix_x = []
+        for y in range(len(m_members_roles)):
+            matrix_x.append(m_members_roles[y][x])
+        mt_members_roles.append(matrix_x)
+    
+    
 
 def es_antiguedad_adecuada(obj_empresa: object):
     año_actual = 2022
@@ -27,37 +40,40 @@ def es_antiguedad_adecuada(obj_empresa: object):
 
 def obtener_estadisticas_clientes(obj_empresa: object):
     list_obj_customers_empresa = obj_empresa.customers
-    #declaro las variables sin valor, para no limitar el rango
+    
+    # declaro las variables sin valor, para no limitar el rango
     minimo_edad = None
     minimo_antiguedad = None
     maximo_edad = None
     maximo_antiguedad = None
     prom_edad = 0
     prom_antiguedad = 0
+    
     for obj_customers in list_obj_customers_empresa:
-        #si es la primera iteracion cargo valores a las variables con el primer cliente
+        # Si es la primera iteracion cargo valores a las variables con el primer cliente
         if(minimo_edad is None):
             minimo_edad = obj_customers.age
             minimo_antiguedad = obj_customers.since
             maximo_edad = obj_customers.age
             maximo_antiguedad = obj_customers.since
         
-        #Minimos
+        # Minimos
         if(minimo_edad > obj_customers.age):
             minimo_edad = obj_customers.age
         if(minimo_antiguedad > obj_customers.since):
             minimo_antiguedad = obj_customers.since
         
-        #maximos
+        # Maximos
         if (maximo_edad < obj_customers.age):
             maximo_edad = obj_customers.age
         if (maximo_antiguedad < obj_customers.since):
             maximo_antiguedad = obj_customers.since
         
-        #promedio
+        # suma del promedio
         prom_antiguedad += obj_customers.since
         prom_edad += obj_customers.age
     
+    # division del promedio
     prom_antiguedad = prom_antiguedad // len(list_obj_customers_empresa)
     prom_edad = prom_edad // len(list_obj_customers_empresa)
     
@@ -103,7 +119,7 @@ if __name__ == '__main__':
     
     s2 = Store()
     s2.storeid = 1
-    s2.address = "Av. Italia y Bolivia"
+    s2.address = "Av. Italia; Bolivia"
     
     # declaracion de objetos enterprise
     e1 = Enterprise()
