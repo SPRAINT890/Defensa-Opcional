@@ -19,13 +19,52 @@ def es_antiguedad_adecuada(obj_empresa: object):
     antiguedad_empresa = obj_empresa.creation.split('/', 3)
     list_obj_customers_empresa = obj_empresa.customers
     for obj_customers in list_obj_customers_empresa:
-        # la condicion esta mal
-        if(not obj_customers.since > int(antiguedad_empresa[0]) or obj_customers.since > obj_customers.age ):
+        if(obj_customers.since < int(antiguedad_empresa[2]) or (año_actual - obj_customers.since) > obj_customers.age ):
+            # codigo que se hace cuando hay un cliente que cumple estas condiciones
             print("efe")
             continue
 
 
-# def obtener_estadisticas_clientes(enterprise1):
+def obtener_estadisticas_clientes(obj_empresa: object):
+    list_obj_customers_empresa = obj_empresa.customers
+    #declaro las variables sin valor, para no limitar el rango
+    minimo_edad = None
+    minimo_antiguedad = None
+    maximo_edad = None
+    maximo_antiguedad = None
+    prom_edad = 0
+    prom_antiguedad = 0
+    for obj_customers in list_obj_customers_empresa:
+        #si es la primera iteracion cargo valores a las variables con el primer cliente
+        if(minimo_edad is None):
+            minimo_edad = obj_customers.age
+            minimo_antiguedad = obj_customers.since
+            maximo_edad = obj_customers.age
+            maximo_antiguedad = obj_customers.since
+        
+        #Minimos
+        if(minimo_edad > obj_customers.age):
+            minimo_edad = obj_customers.age
+        if(minimo_antiguedad > obj_customers.since):
+            minimo_antiguedad = obj_customers.since
+        
+        #maximos
+        if (maximo_edad < obj_customers.age):
+            maximo_edad = obj_customers.age
+        if (maximo_antiguedad < obj_customers.since):
+            maximo_antiguedad = obj_customers.since
+        
+        #promedio
+        prom_antiguedad += obj_customers.since
+        prom_edad += obj_customers.age
+    
+    prom_antiguedad = prom_antiguedad // len(list_obj_customers_empresa)
+    prom_edad = prom_edad // len(list_obj_customers_empresa)
+    
+    mpm_antiguedad = [minimo_antiguedad, prom_antiguedad, maximo_antiguedad]
+    mpm_edad = [minimo_edad, prom_edad, maximo_edad]
+    return mpm_edad, mpm_antiguedad
+
 # def es_sucursal_correcta(enterprise1, list_id_chars):
 # es_misma_empresa (enterprise1, enterprise2):
 
@@ -34,8 +73,8 @@ if __name__ == '__main__':
     # declaracion de objetos customers
     c1 = Customers()
     c1.name = "Gaspar"
-    c1.since = 2020
-    c1.age = 19
+    c1.since = 2012
+    c1.age = 2
     
     c2 = Customers()
     c2.name = "Joaquin"
@@ -66,7 +105,7 @@ if __name__ == '__main__':
     e1 = Enterprise()
     e1.name = "Dovah Systems"
     e1.budget = 20000
-    e1.creation = "10/12/2022"
+    e1.creation = "10/12/2010"
     e1.departments = [d1, d2]
     e1.customers = [c1, c2]
     e1.store = [s1, s2]
@@ -75,8 +114,5 @@ if __name__ == '__main__':
     # hay_miembros_repetidos(e1, "I+D")
     # hay_miembros_repetidos(e1, "RRHH")
     # 
-    es_antiguedad_adecuada(e1)
-    
-    if d1.__eq__("RRHH"):
-        print("hola")
-    
+    # es_antiguedad_adecuada(e1)
+    print(obtener_estadisticas_clientes(e1))
