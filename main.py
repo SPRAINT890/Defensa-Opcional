@@ -1,7 +1,7 @@
-from customers import Customers
-from departments import Departments
-from stores import Store
-from enterprise import Enterprise
+from Customers import Customers
+from Departments import Departments
+from Stores import Store
+from Enterprise import Enterprise
 
 def hay_miembros_repetidos(enterprise: object, str_section: str):
     lista_secciones = enterprise.departments
@@ -14,6 +14,25 @@ def hay_miembros_repetidos(enterprise: object, str_section: str):
 # miembros
 def existe_presupuesto_suficiente(obj_empresa: object, float_mem_rrhh: float, float_mem_tec: float, float_mem_dir: float, float_ganancia: float):
     lista_secciones = obj_empresa.departments
+    gastos_rrhh = 0
+    gastos_tec = 0
+    gastos_dir = 0
+    presupuesto_bool = False
+    
+    for seccion in lista_secciones:
+        if(seccion.section == "RRHH"):
+            gastos_rrhh += len(seccion.members)*float_mem_rrhh
+            continue
+        if(seccion.section == "Tec"):
+            gastos_tec += len(seccion.members)*float_mem_tec
+            continue
+        if(seccion.section == "Dir"):
+            gastos_dir += len(seccion.members)*float_mem_dir
+            continue
+    if((gastos_tec + gastos_dir + gastos_rrhh) < float_ganancia):
+        presupuesto_bool = True
+    return presupuesto_bool
+    
 
 def definir_roles(obj_empresa: object, list_members: list, list_roles: list):
     list_obj_departments_empresa = obj_empresa.departments
@@ -172,6 +191,8 @@ if __name__ == '__main__':
     # print(obtener_estadisticas_clientes(e1))
     # print(es_misma_empresa(e1, e2))
     # print(es_misma_empresa(e1, e3))
-    print(e1)
-    definir_roles(e1, ["Lorena", "Felipe", "Jose"], ["gerente", "ac", "manager"])
-    print(e1)
+    # print(e1)
+    # definir_roles(e1, ["Lorena", "Felipe", "Jose"], ["gerente", "ac", "manager"])
+    # print(e1)
+    
+    print(existe_presupuesto_suficiente(e1, 10.0, 15.0, 20.0, 10000.0))
