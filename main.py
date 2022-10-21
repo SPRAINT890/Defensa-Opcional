@@ -11,7 +11,9 @@ def hay_miembros_repetidos(enterprise: object, str_section: str):
             sin_duplicar = list(set(lista_miembros))
             seccion.members = sin_duplicar
 
-# def existe_presupuesto_suficiente(enterprise1, float_mem_rrhh, float_mem_tec, float_mem_dir, float_ganancia):
+# miembros
+def existe_presupuesto_suficiente(obj_empresa: object, float_mem_rrhh: float, float_mem_tec: float, float_mem_dir: float, float_ganancia: float):
+    lista_secciones = obj_empresa.departments
 
 def definir_roles(obj_empresa: object, list_members: list, list_roles: list):
     list_obj_departments_empresa = obj_empresa.departments
@@ -35,16 +37,14 @@ def definir_roles(obj_empresa: object, list_members: list, list_roles: list):
                 obj_department_empresa.roles[posicion] = members_roles[1]
                 break
 
-
 def es_antiguedad_adecuada(obj_empresa: object):
     año_actual = 2022
     antiguedad_empresa = obj_empresa.creation.split('/', 3)
     list_obj_customers_empresa = obj_empresa.customers
     for obj_customers in list_obj_customers_empresa:
         if(obj_customers.since < int(antiguedad_empresa[2]) or (año_actual - obj_customers.since) > obj_customers.age ):
-            # codigo que se hace cuando hay un cliente que cumple estas condiciones
-            print("efe")
-            continue
+            return False
+    return True
 
 
 def obtener_estadisticas_clientes(obj_empresa: object):
@@ -88,14 +88,21 @@ def obtener_estadisticas_clientes(obj_empresa: object):
     
     mpm_antiguedad = [minimo_antiguedad, prom_antiguedad, maximo_antiguedad]
     mpm_edad = [minimo_edad, prom_edad, maximo_edad]
-    return mpm_edad, mpm_antiguedad
+    return mpm_edad
 
-# def es_sucursal_correcta(enterprise1, list_id_chars):
+def es_sucursal_correcta(obj_empresa: object, list_id_chars: list):
+    list_stores_empresa = obj_empresa.store
+    for tienda in list_stores_empresa:
+        if(tienda.store_id != list_id_chars[0]):
+            continue
+        if(tienda.address != list_id_chars[1]):
+            return False
+        return True
 
 def es_misma_empresa(obj_empresa1: object, obj_empresa2: object):
     if (obj_empresa1.customers != obj_empresa2.customers or obj_empresa1.departments != obj_empresa2.departments or obj_empresa1.store != obj_empresa2.store):
-        return "False"
-    return "True"
+        return False
+    return True
 
 if __name__ == '__main__':
     
