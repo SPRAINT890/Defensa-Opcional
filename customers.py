@@ -29,7 +29,7 @@ class Customers:
         self._age = age
     
     def __str__(self) -> str:
-        return f"\n  Name: {self._name}\n  Since: {self._since}\n  Age: {self._age}\n"
+        return "\n  Name: {}\n  Since: {}\n  Age: {}\n".format(self._name, self._since, self._age)
     
 # if __name__== "__main__":
 #     custu=Customers()

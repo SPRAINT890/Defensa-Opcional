@@ -20,10 +20,10 @@ class Store:
         self._address = adrs
     
     def __str__(self) -> str:
-        return f"\n  Storeid: {self._store_id}\n  Address: {self._address}\n"
+        return "\n  Storeid: {}\n  Address: {}\n".format(self._store_id, self._address)
 
-if __name__ == '__main__':
-    s1 = Store()
-    s1.storeid = 0
-    s1.address = "gral. nariño 2388"
-    print(s1)
+# if __name__ == '__main__':
+#     s1 = Store()
+#     s1.storeid = 0
+#     s1.address = "gral. nariño 2388"
+#     print(s1)
