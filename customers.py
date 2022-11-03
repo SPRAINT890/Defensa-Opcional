@@ -1,8 +1,8 @@
 class Customers:
-    def __init__(self) -> None:
-        self._name = None
-        self._since = None
-        self._age = None
+    def __init__(self, name, since, age) -> None:
+        self._name = name
+        self._since = since
+        self._age = age
     
     @property   
     def name(self):

@@ -1,14 +1,14 @@
 class Store:
-    def __init__(self) -> None:
-        self._store_id = None
-        self._address = None
+    def __init__(self, store_id, address) -> None:
+        self._store_id = store_id
+        self._address = address
     
     @property
-    def storeid(self):
+    def store_id(self):
         return self._store_id
     
-    @storeid.setter
-    def storeid(self,store):
+    @store_id.setter
+    def store_id(self,store):
         self._store_id = store
     
     @property

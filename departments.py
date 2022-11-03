@@ -1,8 +1,7 @@
 class Departments:
-    def __init__(self) -> None:
-        self._section = None
-        self._members = None
-        self._roles = None
+    def __init__(self, section, members) -> None:
+        self._section = section
+        self._members = members
 
     def __eq__(self, __o: object) -> bool:
         return self.section == __o
@@ -15,10 +14,6 @@ class Departments:
     def members(self):
         return self._members
 
-    @property
-    def roles(self):
-        return self._roles
-
     @section.setter
     def section(self,section):
         self._section = section
@@ -27,12 +22,14 @@ class Departments:
     def members(self,member):
         self._members = member
 
-    @roles.setter
-    def roles(self,role):
-        self._roles = role
-
     def __str__(self) -> str:
-        return "\n  sections: {}\n  members: {}\n  roles: {}\n".format(self._section, self._members, self._roles)
+        return "\n  sections: {}\n  members: {}\n".format(self._section, self.__str_members__())
+    
+    def __str_members__(self) -> str:
+        string = ""
+        for member in self.members:
+            string += str(member) + " "
+        return string
     
 # if __name__ == "__main__":
 #     departments = Departments()
